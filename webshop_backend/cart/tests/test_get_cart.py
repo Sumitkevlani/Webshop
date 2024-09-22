@@ -50,7 +50,6 @@ class ViewCartTestCase(APITestCase):
         """Test retrieving the cart without authentication."""
         self.client.logout()  # Log out the user
         response = self.client.get(self.url)
-        print('Line 52:',response.data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_view_cart_empty(self):
@@ -58,9 +57,7 @@ class ViewCartTestCase(APITestCase):
         # Clear the items in the existing cart instead of creating a new one
         self.cart.items = []  # Set the items to an empty list
         self.cart.save()  # Save the changes
-
         response = self.client.get(self.url)
-        print('Line 58:', response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['cart'], [])  # Expecting an empty cart
 
@@ -69,6 +66,5 @@ class ViewCartTestCase(APITestCase):
         """Test retrieving a cart when the user has no cart."""
         self.cart.delete()  # Delete the cart for the user
         response = self.client.get(self.url)
-        print('Line 66:',response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data['error'], 'No Cart matches the given query.')

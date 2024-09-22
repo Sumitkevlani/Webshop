@@ -12,12 +12,10 @@ class LoginView(APIView):
     def post(self, request):
         username_or_email = request.data.get('username_or_email')
         password = request.data.get('password')
-        print(username_or_email)
-        print(password)
+        
         user = authenticate(username=username_or_email, password=password) or \
                User.objects.filter(email=username_or_email).first()
         
-        print(user)
 
         if user is not None:
             refresh = RefreshToken.for_user(user)

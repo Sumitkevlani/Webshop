@@ -46,7 +46,6 @@ class UpdateCartItemTestCase(APITestCase):
             'quantity': 5
         }
         response = self.client.put(self.url, data, format='json')
-        print('Line 48:', response.status_code, response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['message'], 'Cart item updated successfully')
         
@@ -61,7 +60,6 @@ class UpdateCartItemTestCase(APITestCase):
             'quantity': 1
         }
         response = self.client.put(self.url, data, format='json')
-        print('Line 62:', response.status_code, response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('error', response.data)
 
@@ -72,7 +70,6 @@ class UpdateCartItemTestCase(APITestCase):
             'quantity': 15  # Exceeds available stock (10)
         }
         response = self.client.put(self.url, data, format='json')
-        print('Line 72:', response.status_code, response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('error', response.data)
 
@@ -82,7 +79,6 @@ class UpdateCartItemTestCase(APITestCase):
             'quantity': 5
         }
         response = self.client.put(self.url, data, format='json')
-        print('Line 81:', response.status_code, response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data['error'], 'Both product_id and quantity are required')
 
@@ -94,6 +90,5 @@ class UpdateCartItemTestCase(APITestCase):
             'quantity': 1
         }
         response = self.client.put(self.url, data, format='json')
-        print('Line 92:', response.status_code, response.data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)  
         self.assertIn('detail', response.data)
