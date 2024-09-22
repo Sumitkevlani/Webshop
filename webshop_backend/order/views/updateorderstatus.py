@@ -24,7 +24,6 @@ class UpdateOrderStatusView(APIView):
                     order.total_value = Decimal(total_value)
                 except (ValueError, TypeError):
                     return Response({'error': 'Total value must be a valid decimal number'}, status=status.HTTP_400_BAD_REQUEST)
-
             order.status = new_status
             order.save()
             
