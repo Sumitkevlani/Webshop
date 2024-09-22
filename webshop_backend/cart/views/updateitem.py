@@ -1,39 +1,3 @@
-# from rest_framework.views import APIView
-# from rest_framework.permissions import IsAuthenticated
-# from rest_framework.response import Response
-# from rest_framework import status
-# from bson import ObjectId
-# from django.shortcuts import get_object_or_404
-# from ..models import Cart
-
-# from ...product.models import Product
-# import json
-
-# class UpdateCartItemView(APIView):
-#     permission_classes = [IsAuthenticated]
-#     def patch(self, request, *args, **kwargs):
-#         try:
-#             body = json.loads(request.body)
-#             product_id = body.get('product_id')
-#             quantity = body.get('quantity')
-#             product_id = ObjectId(product_id)
-
-#             if not quantity or quantity < 1:
-#                 return Response({'error': 'Invalid quantity'}, status=status.HTTP_400_BAD_REQUEST)
-
-#             cart = get_object_or_404(Cart, user=request.user)
-#             product = get_object_or_404(Product, _id=product_id)
-
-#             cart.update_item(product, quantity)  # Add item method will also update the quantity
-
-#             return Response({'message': 'Cart item updated successfully'}, status=status.HTTP_200_OK)
-#         except Product.DoesNotExist:
-#             return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
-#         except Exception as e:
-#             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -64,6 +28,8 @@ class UpdateCartItemView(APIView):
             return Response({'message': 'Cart item updated successfully'}, status=status.HTTP_200_OK)
         except Cart.DoesNotExist:
             return Response({'error': 'Cart not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Product.DoesNotExist:
+            return Response({'error': 'Product not found'}, status=status.HTTP_400_BAD_REQUEST)
         except ValueError as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
