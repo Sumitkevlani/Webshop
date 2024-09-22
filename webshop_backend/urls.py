@@ -23,5 +23,4 @@ urlpatterns = [
     path('api/product/',include('webshop_backend.product.urls')),
     path('api/cart/',include('webshop_backend.cart.urls')),
     path('api/orders/',include('webshop_backend.order.urls')),
-    path('api/payment/',include('webshop_backend.payment.urls'))
 ]

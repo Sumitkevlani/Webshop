@@ -45,9 +45,7 @@ INSTALLED_APPS = [
     'webshop_backend.authentication',
     'webshop_backend.product',
     'webshop_backend.cart',
-    'webshop_backend.order',
-    'webshop_backend.payment',
-    'webshop_backend.ai_assistant'
+    'webshop_backend.order'
 ]
 
 MIDDLEWARE = [
