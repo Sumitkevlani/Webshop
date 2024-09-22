@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
@@ -13,7 +14,7 @@ class UserDetailsTestCase(APITestCase):
             email='testuser@example.com',
             password='ValidPass123!'
         )
-        self.url = '/api/auth/get-user/'
+        self.url = reverse('user-details')
 
     def login_user(self):
         """Helper method to log in the user and return access token."""
