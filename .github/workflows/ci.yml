@@ -30,4 +30,4 @@ jobs:
         pipenv install
     - name: Run Tests
       run: |
-        pipenv run pytest --ds=Webshop.webshop_backend.settings
+        pipenv run python manage.py test Webshop.webshop_backend
