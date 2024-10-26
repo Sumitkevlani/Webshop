@@ -28,7 +28,7 @@ jobs:
     - name: Install Dependencies
       run: |
         pipenv install
-        pipenv install pymongo[srv]
+        pipenv install pymongo==3.12.3
     - name: Run Tests
       env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
