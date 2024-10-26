@@ -38,4 +38,4 @@ jobs:
           MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
-        pipenv run python manage.py test Webshop.webshop_backend
+        pipenv run python manage.py test webshop_backend
