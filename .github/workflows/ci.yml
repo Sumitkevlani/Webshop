@@ -29,5 +29,13 @@ jobs:
       run: |
         pipenv install
     - name: Run Tests
+      env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DEBUG: ${{ secrets.DEBUG }}
+          MONGODB_HOST: ${{ secrets.MONGODB_HOST }}
+          MONGODB_NAME: ${{ secrets.MONGODB_NAME }}
+          MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+          MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         pipenv run python manage.py test Webshop.webshop_backend
